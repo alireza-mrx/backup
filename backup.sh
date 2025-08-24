@@ -127,11 +127,10 @@ EOL
 chmod +x "$path/ac-backup.sh"
 
 ZIP=$(cat <<EOF
-#!/bin/bash
 
 docker exec marzban-mysql-1 bash -c "/var/lib/mysql/ac-backup.sh"
-zip -r /root/ac-backup-m.zip /opt/marzban/* /var/lib/marzban/* /opt/marzban/.env -x "$path/\*"
-zip -r /root/ac-backup-m.zip "$path/db-backup/*"
+zip -r /root/ac-backup-m.zip /opt/marzban/* /var/lib/marzban/* /opt/marzban/.env -x $path/\*
+zip -r /root/ac-backup-m.zip $path/db-backup/*
 rm -rf "$path/db-backup/*"
 EOF
 )
@@ -193,7 +192,6 @@ fi
 
 
 ZIP=$(cat <<EOF
-#!/bin/bash
 
 cd /opt/hiddify-manager/hiddify-panel/
 if [ $(find /opt/hiddify-manager/hiddify-panel/backup -type f | wc -l) -gt 100 ]; then
@@ -211,7 +209,7 @@ EOF
 )
 ACLover="hiddify backup"
 else
-echo "Please choose m or x or h only !"
+echo "Please choose m or x or s or h only !"
 exit 1
 fi
 
@@ -224,7 +222,7 @@ trim() {
 }
 
 IP=$(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')
-caption="${caption}\n\n${ACLover}\n<code>${IP}</code>\nCreated by @AC_Lover - https://github.com/AC-Lover/backup"
+caption="${caption}\n\n${ACLover}\n<code>${IP}</code>\nCreated by @AC_LoverBot - https://github.com/AC-Lover/backup"
 comment=$(echo -e "$caption" | sed 's/<code>//g;s/<\/code>//g')
 comment=$(trim "$comment")
 
@@ -232,7 +230,9 @@ comment=$(trim "$comment")
 sudo apt install zip -y
 
 cat > "/root/ac-backup-${xmhs}.sh" <<EOL
-rm -rf /root/ac-backup-${xmhs}.zip
+#!/bin/bash
+
+rm -f /root/ac-backup-${xmhs}.zip
 $ZIP
 echo -e "$comment" | zip -z /root/ac-backup-${xmhs}.zip
 curl -F chat_id="${chatid}" -F caption=\$'${caption}' -F parse_mode="HTML" -F document=@"/root/ac-backup-${xmhs}.zip" https://api.telegram.org/bot${tk}/sendDocument
