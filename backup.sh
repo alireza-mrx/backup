@@ -62,7 +62,7 @@ done
 # --- Panel Selection (Added '3' for 3XUI-Multi) ---
 
 while [[ -z "$xmhs" ]]; do
-    echo "x-ui or s-ui or marzban or hiddify or multi-x-ui (t) or 3xui-multi (3)? [x/s/m/h/t/3] : "
+    echo "x-ui or s-ui or marzban or hiddify or 3xui-multi (3)? [x/s/m/h/t/3] : "
     read -r xmhs
     if [[ -z "$xmhs" ]]; then
         echo "Invalid input. Please choose x, s, m, h, t, or 3."
