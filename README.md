@@ -33,7 +33,7 @@
 <p align="left">First, you run this command on your server<br><br></p> 
 
 ```bash
-bash <(curl -Ls https://github.com/AC-Lover/backup/raw/main/backup.sh)
+bash <(curl -Ls https://github.com/alireza-mrx/backup/raw/main/backup.sh)
 ``` 
 
 ###
@@ -118,4 +118,5 @@ https://github.com/AC-Lover/backup/assets/49290111/905c545c-caa9-4ad5-80d1-82c70
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/AC-Lover/backup.svg)](https://starchart.cc/AC-Lover/backup)
+
 
